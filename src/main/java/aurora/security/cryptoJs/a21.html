@@ -22,21 +22,8 @@ function encryptByDES(message, key) {
         mode: CryptoJS.mode.ECB,
         padding: CryptoJS.pad.Pkcs7
     });
-    // decrypt encrypt result
-    // var decrypted = CryptoJS.DES.decrypt(encrypted, keyHex, {
-    //     mode: CryptoJS.mode.ECB,
-    //     padding: CryptoJS.pad.Pkcs7
-    // });
-    // console.log(decrypted.toString(CryptoJS.enc.Utf8));
-    // when mode is CryptoJS.mode.CBC (default mode), you must set iv param
-    // var iv = 'inputvec';
-    // var ivHex = CryptoJS.enc.Hex.parse(CryptoJS.enc.Utf8.parse(iv).toString(CryptoJS.enc.Hex));
-    // var encrypted = CryptoJS.DES.encrypt(message, keyHex, { iv: ivHex, mode: CryptoJS.mode.CBC });
-    // var decrypted = CryptoJS.DES.decrypt(encrypted, keyHex, { iv: ivHex, mode: CryptoJS.mode.CBC });
-    // console.log('encrypted.toString()  -> base64(ciphertext)  :', encrypted.toString());
-    // console.log('base64(ciphertext)    <- encrypted.toString():', encrypted.ciphertext.toString(CryptoJS.enc.Base64));
-    // console.log('ciphertext.toString() -> ciphertext hex      :', encrypted.ciphertext.toString());
-    return encrypted.toString();
+  return encodeURIComponent(encrypted.toString());
+ // return encodeURI(encrypted.toString());
 }
 /**
  * Decrypt ciphertext by DES in ECB mode and Pkcs7 padding scheme
@@ -59,7 +46,7 @@ function decryptByDES(ciphertext, key) {
     });
     return decrypted.toString(CryptoJS.enc.Utf8);
 }
-var message = '子明Message';
+var message = '子明21`23';
 var key = '1234567qwertyuiASDFGVFR8';
 var ciphertext = encryptByDES(message, key);
 // ciphertext: 8dKft9vkZ4I=
